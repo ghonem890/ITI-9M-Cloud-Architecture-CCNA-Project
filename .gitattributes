@@ -1,0 +1,7 @@
+* text=auto
+*.pkt binary
+*.pka binary
+*.docx binary
+*.pdf binary
+*.png binary
+*.jpg binary

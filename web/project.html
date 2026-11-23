@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Project | CCNA Capstone - ITI Ismailia</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table class="topbar" width="100%" cellpadding="0" cellspacing="0"><tr><td>
+<div class="wrap">Information Technology Institute (ITI) &nbsp;|&nbsp; Ismailia - Suez Canal Branch &nbsp;|&nbsp; Cloud Architecture Track</div>
+</td></tr></table>
+
+<table class="header" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="80"><a href="index.html"><img src="img/logo-round.png" width="64" height="64" alt="ITI"></a></td>
+<td><div class="brand-title">CCNA Capstone Project</div><div class="brand-sub">Enterprise Network Design &amp; Implementation &middot; ITI Ismailia</div></td>
+<td align="right" width="190"><img src="img/logo-suez.png" width="90" height="90" alt="ITI Suez Canal Branch"></td>
+</tr></table>
+</td></tr></table>
+
+<table class="nav" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td><a href="index.html">Home</a></td><td><a href="about.html">About ITI</a></td><td class="active"><a href="project.html">The Project</a></td><td><a href="network.html">Network Design</a></td><td><a href="technologies.html">Technologies</a></td><td><a href="team.html">Our Team</a></td></tr></table>
+</td></tr></table>
+
+<table class="pagetitle" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td style="padding:22px 28px;color:#ffffff;">
+<h1>The Project</h1><p>Brief, requirements and verification results</p></td></tr></table></td></tr></table>
+
+<table class="content" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td>
+<div class="section"><h2>The Brief</h2><div class="rule">&nbsp;</div>
+<div class="note"><b>Task:</b> You are a network engineer. Choose any organization, then plan, design and implement its network - using variable subnetting.</div>
+<p>We chose a <b>multi-site enterprise</b> with a Headquarters (HQ) and a Regional Branch (RB). Departments such as Sales &amp; Marketing, HR, Finance &amp; Accounting and IT sit at HQ, while Customer Support, Operations / Logistics, Research &amp; Development and Legal &amp; Administration sit in the Regional Branch. A central Edge router connects both sites to a DMZ web server and to the ISP.</p>
+</div><div class="section"><h2>Requirements and How We Met Them</h2><div class="rule">&nbsp;</div><table class="data" cellpadding="0" cellspacing="0"><tr><th width="30">#</th><th width="190">Requirement</th><th width="600">Our implementation</th></tr><tr><td>1</td><td><b>VLSM</b></td><td>Every segment uses the smallest prefix that fits its hosts: /25, /26, /27, /28 and /29 for LAN VLANs, /30 for point-to-point WAN links. No overlaps.</td></tr><tr class="alt"><td>2</td><td><b>OSPF routing</b></td><td>Process 1, area 0 on the five internal routers with manual router IDs (1.1.1.1 - 5.5.5.5). <code>passive-interface default</code> keeps hellos off the LANs. The Edge router advertises the default route.</td></tr><tr><td>3</td><td><b>VLANs + Router-on-a-Stick</b></td><td>Each branch switch pair carries its VLANs over an 802.1Q trunk (native VLAN 99). Each router uses one sub-interface per VLAN on Gig0/0.</td></tr><tr class="alt"><td>4</td><td><b>Standalone DHCP server</b></td><td>Server0 (10.10.1.36) holds eight scopes for both branches. <code>ip helper-address</code> on every user sub-interface relays requests across the WAN.</td></tr><tr><td>5</td><td><b>AAA + local admin</b></td><td>Server2 (10.10.1.37) runs RADIUS. Routers use <code>aaa authentication login ... group radius local</code>, so the local admin account still works if the server is down.</td></tr><tr class="alt"><td>6</td><td><b>Line passwords = first name</b></td><td>Console, Aux and VTY lines are protected, and <code>service password-encryption</code> hides them in the configuration.</td></tr><tr><td>7</td><td><b>Enable password = second name</b></td><td>Privileged EXEC mode is protected with an <code>enable secret</code> (MD5 hashed).</td></tr><tr class="alt"><td>8</td><td><b>Web server with public IP 50.50.50.2</b></td><td>Server1 sits in a DMZ behind the Edge router. Static NAT (<code>ip nat inside source static 10.40.0.2 50.50.50.2</code>) publishes it to the ISP side.</td></tr><tr><td>9</td><td><b>EtherChannel for backup</b></td><td>Two links between each switch pair are bundled into Port-channel 1 using PAgP and trunked, giving double bandwidth and automatic failover.</td></tr><tr class="alt"><td>10</td><td><b>HSRP redundancy</b></td><td>Active/Standby router pairs share a virtual IP per VLAN. The active router has priority 110 with preempt; the standby has priority 100.</td></tr><tr><td>11</td><td><b>SSH on the routers</b></td><td>SSH version 2 with a 1024-bit RSA key on all five internal routers; VTY lines accept SSH only.</td></tr></table><p>Requirement 11 of the brief - documentation - is delivered as a detailed PDF report with screenshots and short explanations for every step.</p></div><div class="section"><h2>Verification</h2><div class="rule">&nbsp;</div>
+<p>Each requirement was tested and captured as evidence in the report:</p>
+<table class="data" cellpadding="0" cellspacing="0"><tr><th width="45%">Check</th><th>Result</th></tr>
+<tr><td>OSPF neighbours</td><td>All adjacencies in FULL state; default route learned as O*E2 0.0.0.0/0</td></tr>
+<tr class="alt"><td>VLANs and trunks</td><td>All branch VLANs present; trunks on Po1 and Fa0/9 with native VLAN 99</td></tr>
+<tr><td>EtherChannel</td><td>Po1 shown as SU (Layer 2, in use) with member ports flagged P</td></tr>
+<tr class="alt"><td>HSRP failover</td><td>Shutting down R0_HQ made R1_HQ Active; R0_HQ reclaimed it after recovery</td></tr>
+<tr><td>DHCP</td><td>HQ and Regional PCs obtained leases with the HSRP virtual IP as gateway</td></tr>
+<tr class="alt"><td>Cross-branch ping</td><td>HQ HR laptop to Regional Operations PC 10.20.0.137 - 0% packet loss</td></tr>
+<tr><td>AAA and SSH</td><td>SSH v2 login via RADIUS user, plus successful local fallback with RADIUS disabled</td></tr>
+<tr class="alt"><td>Static NAT</td><td>External PC16 browses http://50.50.50.2 and reaches the internal web server</td></tr>
+</table></div>
+</td></tr></table>
+</td></tr></table>
+
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="60%"><b style="color:#ffffff;">CCNA Final Project</b><br>
+Prepared by Islam Ramadan Ahmed, Tariq Ahmad Motawea and Khaled Ahmed Ghonem.<br>
+Information Technology Institute (ITI) - Ismailia, Suez Canal Branch - Cloud Architecture Track.</td>
+<td width="40%" align="right"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="project.html">Project</a> &nbsp;|&nbsp; <a href="network.html">Network</a> &nbsp;|&nbsp; <a href="team.html">Team</a><br>
+Built and tested in Cisco Packet Tracer 8.2.2</td>
+</tr></table>
+</td></tr></table>
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td class="small" style="background-color:#1c1c1c;text-align:center;padding:10px;">
+&copy; 2026 CCNA Capstone Project Team &middot; People develop countries, we develop people.
+</td></tr></table>
+</body>
+</html>

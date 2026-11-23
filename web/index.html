@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home | CCNA Capstone - ITI Ismailia</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table class="topbar" width="100%" cellpadding="0" cellspacing="0"><tr><td>
+<div class="wrap">Information Technology Institute (ITI) &nbsp;|&nbsp; Ismailia - Suez Canal Branch &nbsp;|&nbsp; Cloud Architecture Track</div>
+</td></tr></table>
+
+<table class="header" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="80"><a href="index.html"><img src="img/logo-round.png" width="64" height="64" alt="ITI"></a></td>
+<td><div class="brand-title">CCNA Capstone Project</div><div class="brand-sub">Enterprise Network Design &amp; Implementation &middot; ITI Ismailia</div></td>
+<td align="right" width="190"><img src="img/logo-suez.png" width="90" height="90" alt="ITI Suez Canal Branch"></td>
+</tr></table>
+</td></tr></table>
+
+<table class="nav" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td class="active"><a href="index.html">Home</a></td><td><a href="about.html">About ITI</a></td><td><a href="project.html">The Project</a></td><td><a href="network.html">Network Design</a></td><td><a href="technologies.html">Technologies</a></td><td><a href="team.html">Our Team</a></td></tr></table>
+</td></tr></table>
+
+<table class="hero" width="100%" cellpadding="0" cellspacing="0" bgcolor="#8e1520"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="560" style="padding:34px 28px;color:#ffffff;">
+<span class="tag">CCNA FINAL PROJECT</span><span class="tag">CLOUD ARCHITECTURE TRACK</span><br><br>
+<h1 style="margin:0 0 10px 0;font-size:30px;color:#ffffff;">Designing a Secure, Resilient Multi-Site Enterprise Network</h1>
+<p style="color:#f7dcdc;">Two branches, one edge router and a public web server - planned with VLSM, routed with OSPF, protected with AAA and SSH, and kept online by HSRP and EtherChannel.</p>
+<a class="btn" href="project.html">Explore the Project</a><a class="btn2" href="team.html">Meet the Team</a>
+</td>
+<td width="340" align="center" style="padding:20px;"><img src="img/iti-building.png" width="320" height="239" alt="ITI Intake 47"></td>
+</tr></table></td></tr></table>
+
+<table class="content" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td>
+<table class="stats" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td width="25%" style="background-color:#f7f7f7;text-align:center;padding:18px 6px;"><div class="stat-num">2</div><div class="stat-lbl">Branches (HQ + Regional)</div></td>
+<td width="25%" style="background-color:#f7f7f7;text-align:center;padding:18px 6px;"><div class="stat-num">9</div><div class="stat-lbl">Routed VLANs</div></td>
+<td width="25%" style="background-color:#f7f7f7;text-align:center;padding:18px 6px;"><div class="stat-num">5</div><div class="stat-lbl">OSPF Routers</div></td>
+<td width="25%" style="background-color:#f7f7f7;text-align:center;padding:18px 6px;"><div class="stat-num">11</div><div class="stat-lbl">Requirements Met</div></td>
+</tr></table><div class="section"><h2>About This Project</h2><div class="rule">&nbsp;</div>
+<p>This website presents the <b>CCNA Capstone Project</b> built by our team at the Information Technology Institute (ITI), Ismailia branch. The brief was simple to state and demanding to deliver: act as a network engineer, choose an organization, then plan, design and implement its complete network - using <b>variable-length subnet masking (VLSM)</b> throughout.</p>
+<p>We designed an enterprise with a Headquarters, a Regional Branch and a central Edge router that reaches the Internet through a simulated ISP. Every segment is sized to its real host count, every gateway has a standby, every management session is authenticated, and an internal web server is published to the outside world on the public address <b>50.50.50.2</b>.</p>
+</div><div class="section"><h2>Project Highlights</h2><div class="rule">&nbsp;</div><table class="cards" width="100%" cellpadding="0" cellspacing="10"><tr><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">Smart Addressing</h3><p>VLSM sizes each subnet to the smallest prefix that fits its department, with /30 links on the WAN and no overlap across 9 VLANs.</p></td><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">Dynamic Routing</h3><p>Single-area OSPF (area 0) links HQ, Regional Branch and Edge, and the Edge router originates the default route to the ISP.</p></td><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">High Availability</h3><p>HSRP gives every VLAN a shared virtual gateway, while a PAgP EtherChannel doubles inter-switch bandwidth and survives a link failure.</p></td></tr><tr><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">Centralised Services</h3><p>One standalone DHCP server serves both branches through DHCP relay, and a RADIUS server handles router logins with a local fallback account.</p></td><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">Secure Management</h3><p>Passwords are encrypted, the enable mode is protected, and VTY access is SSH version 2 only - Telnet is disabled.</p></td><td class="card" width="33%" style="background-color:#ffffff;border:1px solid #dddddd;border-top:4px solid #b01f2b;padding:16px;"><h3 style="color:#b01f2b;">Public Web Publishing</h3><p>Static NAT maps the internal web server to 50.50.50.2 so an external client can browse it through the ISP.</p></td></tr></table></div><div class="section"><h2>Where Are We?</h2><div class="rule">&nbsp;</div>
+<table width="100%" cellpadding="0" cellspacing="0"><tr>
+<td width="140" valign="top"><img src="img/logo-suez.png" width="120" height="120" alt="ITI Suez Canal Branch"></td>
+<td valign="top"><p>We are students of the <b>Cloud Architecture track</b> at the <b>Information Technology Institute - Ismailia (Suez Canal Branch)</b>. The CCNA capstone is where the networking foundation of the track comes together: switching, routing, redundancy, security and services in a single working design.</p>
+<p><a href="about.html">Learn more about ITI &raquo;</a> &nbsp;&nbsp; <a href="network.html">See the network design &raquo;</a></p></td>
+</tr></table>
+</div>
+</td></tr></table>
+</td></tr></table>
+
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="60%"><b style="color:#ffffff;">CCNA Final Project</b><br>
+Prepared by Islam Ramadan Ahmed, Tariq Ahmad Motawea and Khaled Ahmed Ghonem.<br>
+Information Technology Institute (ITI) - Ismailia, Suez Canal Branch - Cloud Architecture Track.</td>
+<td width="40%" align="right"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="project.html">Project</a> &nbsp;|&nbsp; <a href="network.html">Network</a> &nbsp;|&nbsp; <a href="team.html">Team</a><br>
+Built and tested in Cisco Packet Tracer 8.2.2</td>
+</tr></table>
+</td></tr></table>
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td class="small" style="background-color:#1c1c1c;text-align:center;padding:10px;">
+&copy; 2026 CCNA Capstone Project Team &middot; People develop countries, we develop people.
+</td></tr></table>
+</body>
+</html>

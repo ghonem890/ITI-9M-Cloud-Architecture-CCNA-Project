@@ -1,0 +1,14 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Office lock/temp files
+~$*
+*.tmp
+
+# Packet Tracer backups / autosaves
+*.pkt.bak
+*.bak
+*~
+*.pka.bak

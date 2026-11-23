@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Network Design | CCNA Capstone - ITI Ismailia</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table class="topbar" width="100%" cellpadding="0" cellspacing="0"><tr><td>
+<div class="wrap">Information Technology Institute (ITI) &nbsp;|&nbsp; Ismailia - Suez Canal Branch &nbsp;|&nbsp; Cloud Architecture Track</div>
+</td></tr></table>
+
+<table class="header" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="80"><a href="index.html"><img src="img/logo-round.png" width="64" height="64" alt="ITI"></a></td>
+<td><div class="brand-title">CCNA Capstone Project</div><div class="brand-sub">Enterprise Network Design &amp; Implementation &middot; ITI Ismailia</div></td>
+<td align="right" width="190"><img src="img/logo-suez.png" width="90" height="90" alt="ITI Suez Canal Branch"></td>
+</tr></table>
+</td></tr></table>
+
+<table class="nav" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td><a href="index.html">Home</a></td><td><a href="about.html">About ITI</a></td><td><a href="project.html">The Project</a></td><td class="active"><a href="network.html">Network Design</a></td><td><a href="technologies.html">Technologies</a></td><td><a href="team.html">Our Team</a></td></tr></table>
+</td></tr></table>
+
+<table class="pagetitle" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td style="padding:22px 28px;color:#ffffff;">
+<h1>Network Design</h1><p>Topology, VLSM addressing plan and device inventory</p></td></tr></table></td></tr></table>
+
+<table class="content" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr><td>
+<div class="section"><h2>Network Topology</h2><div class="rule">&nbsp;</div>
+<p>The design has four logical zones: the <b>HQ branch</b> (10.10.0.0), the <b>Regional Branch</b> (10.20.0.0), the <b>Edge / DMZ</b> and the <b>ISP / external</b> network. Each branch has two routers in an HSRP pair and two switches joined by an EtherChannel.</p>
+<div class="figure"><img src="img/topology.jpg" width="820" height="650" alt="Network topology" style="border:1px solid #dddddd;"><div class="caption">Full network topology in Cisco Packet Tracer 8.2.2</div></div>
+</div><div class="section"><h2>HQ Branch - 10.10.0.0</h2><div class="rule">&nbsp;</div><table class="data" cellpadding="0" cellspacing="0"><tr><th>VLAN</th><th>Department</th><th>Subnet</th><th>Mask</th><th>HSRP VIP</th><th>R0_HQ (Active)</th><th>R1_HQ (Standby)</th></tr><tr><td>40</td><td>Sales &amp; Marketing</td><td>10.10.0.0</td><td>/25</td><td>10.10.0.1</td><td>10.10.0.2</td><td>10.10.0.3</td></tr><tr class="alt"><td>20</td><td>HR</td><td>10.10.0.128</td><td>/26</td><td>10.10.0.129</td><td>10.10.0.130</td><td>10.10.0.131</td></tr><tr><td>30</td><td>Finance &amp; Accounting</td><td>10.10.0.192</td><td>/26</td><td>10.10.0.193</td><td>10.10.0.194</td><td>10.10.0.195</td></tr><tr class="alt"><td>10</td><td>IT &amp; Infrastructure</td><td>10.10.1.0</td><td>/27</td><td>10.10.1.1</td><td>10.10.1.2</td><td>10.10.1.3</td></tr><tr><td>5</td><td>Servers (static)</td><td>10.10.1.32</td><td>/29</td><td>10.10.1.33</td><td>10.10.1.34</td><td>10.10.1.35</td></tr><tr class="alt"><td>99</td><td>Native / blackhole</td><td>Layer 2 only</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></table></div><div class="section"><h2>Regional Branch - 10.20.0.0</h2><div class="rule">&nbsp;</div><table class="data" cellpadding="0" cellspacing="0"><tr><th>VLAN</th><th>Department</th><th>Subnet</th><th>Mask</th><th>HSRP VIP</th><th>R3_RB (Active)</th><th>R2_RB (Standby)</th></tr><tr><td>50</td><td>Customer Support</td><td>10.20.0.0</td><td>/25</td><td>10.20.0.1</td><td>10.20.0.2</td><td>10.20.0.3</td></tr><tr class="alt"><td>60</td><td>Operations / Logistics</td><td>10.20.0.128</td><td>/27</td><td>10.20.0.129</td><td>10.20.0.130</td><td>10.20.0.131</td></tr><tr><td>80</td><td>Legal &amp; Administration</td><td>10.20.0.160</td><td>/27</td><td>10.20.0.161</td><td>10.20.0.162</td><td>10.20.0.163</td></tr><tr class="alt"><td>70</td><td>Research &amp; Development</td><td>10.20.0.192</td><td>/28</td><td>10.20.0.193</td><td>10.20.0.194</td><td>10.20.0.195</td></tr><tr><td>99</td><td>Native / blackhole</td><td>Layer 2 only</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></table></div><div class="section"><h2>WAN, DMZ and External Links</h2><div class="rule">&nbsp;</div><table class="data" cellpadding="0" cellspacing="0"><tr><th>Link</th><th>Subnet</th><th>Endpoints</th></tr><tr><td>R3_RB - R2_RB</td><td>10.30.0.0/30</td><td>10.30.0.1 - 10.30.0.2</td></tr><tr class="alt"><td>R0_HQ - R3_RB</td><td>10.30.0.4/30</td><td>10.30.0.5 - 10.30.0.6</td></tr><tr><td>R0_HQ - R1_HQ</td><td>10.30.0.8/30</td><td>10.30.0.9 - 10.30.0.10</td></tr><tr class="alt"><td>R1_HQ - R2_RB</td><td>10.30.0.12/30</td><td>10.30.0.13 - 10.30.0.14</td></tr><tr><td>R4_EDGE - R3_RB</td><td>10.30.0.16/30</td><td>10.30.0.17 - 10.30.0.18</td></tr><tr class="alt"><td>R4_EDGE - R0_HQ</td><td>10.30.0.20/30</td><td>10.30.0.21 - 10.30.0.22</td></tr><tr><td>R4_EDGE - Server1 (DMZ)</td><td>10.40.0.0/30</td><td>10.40.0.1 - 10.40.0.2</td></tr><tr class="alt"><td>R4_EDGE - Router5 (ISP)</td><td>50.50.50.0/29</td><td>50.50.50.1 - 50.50.50.3 (50.50.50.2 reserved for NAT)</td></tr><tr><td>Router5 - PC16 (external client)</td><td>60.60.60.0/30</td><td>60.60.60.1 - 60.60.60.2</td></tr></table><div class="note"><b>Why a /29 toward the ISP?</b> A /30 would use .1 and .2 for the two routers, colliding with the required public NAT address 50.50.50.2. A /29 keeps that address free and directly reachable.</div></div><div class="section"><h2>Device Inventory</h2><div class="rule">&nbsp;</div><table class="data" cellpadding="0" cellspacing="0"><tr><th>Zone</th><th>Device</th><th>Role</th></tr><tr><td>HQ</td><td>R0_HQ / R1_HQ</td><td>HSRP Active / Standby, router-on-a-stick, OSPF</td></tr><tr class="alt"><td>HQ</td><td>SW0_HQ / SW1_HQ</td><td>Access and trunk switches with EtherChannel Po1</td></tr><tr><td>HQ</td><td>Server0</td><td>Standalone DHCP server (10.10.1.36)</td></tr><tr class="alt"><td>HQ</td><td>Server2</td><td>RADIUS AAA server (10.10.1.37)</td></tr><tr><td>Regional</td><td>R3_RB / R2_RB</td><td>HSRP Active / Standby, router-on-a-stick, OSPF</td></tr><tr class="alt"><td>Regional</td><td>SW3_RB / SW2_RB</td><td>Access and trunk switches with EtherChannel Po1</td></tr><tr><td>Edge / DMZ</td><td>R4_EDGE</td><td>OSPF, Static NAT, default route to ISP</td></tr><tr class="alt"><td>Edge / DMZ</td><td>Server1</td><td>Internal web server (HTTP), public IP 50.50.50.2</td></tr><tr><td>External</td><td>Router5 / PC16</td><td>Simulated ISP and external test client</td></tr></table></div>
+</td></tr></table>
+</td></tr></table>
+
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+<table class="wrap" width="900" cellpadding="0" cellspacing="0"><tr>
+<td width="60%"><b style="color:#ffffff;">CCNA Final Project</b><br>
+Prepared by Islam Ramadan Ahmed, Tariq Ahmad Motawea and Khaled Ahmed Ghonem.<br>
+Information Technology Institute (ITI) - Ismailia, Suez Canal Branch - Cloud Architecture Track.</td>
+<td width="40%" align="right"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="project.html">Project</a> &nbsp;|&nbsp; <a href="network.html">Network</a> &nbsp;|&nbsp; <a href="team.html">Team</a><br>
+Built and tested in Cisco Packet Tracer 8.2.2</td>
+</tr></table>
+</td></tr></table>
+<table class="footer" width="100%" cellpadding="0" cellspacing="0"><tr><td class="small" style="background-color:#1c1c1c;text-align:center;padding:10px;">
+&copy; 2026 CCNA Capstone Project Team &middot; People develop countries, we develop people.
+</td></tr></table>
+</body>
+</html>
